@@ -1,6 +1,6 @@
 <template>
   <div>
-    <base-popup :show="isShow"
+    <base-popup :show="isPopup"
                 @close="popupSwitch"
                 :mealName="mealName"
                 :mealInfo="mealInfo === undefined ? info : mealInfo"
@@ -26,7 +26,7 @@ export default {
   emits: ["clear-fav"],
   data() {
     return {
-      isShow: false,
+      isPopup: false,
       ingrendient: [],
       info: "",
     };
@@ -88,7 +88,7 @@ export default {
       }
     },
     popupSwitch() {
-      this.isShow = !this.isShow;
+      this.isPopup = !this.isPopup;
     },
     clearFav() {
       this.$emit("clear-fav", this.mealId);

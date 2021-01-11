@@ -1,50 +1,53 @@
 <template>
   <div>
-    <base-spinner v-if="isLoading">
-    </base-spinner>
-    <div class="body-container"
-         v-else-if="!isLoading">
+    <base-spinner v-if="isLoading"> </base-spinner>
+    <div class="body-container" v-else-if="!isLoading">
       <div class="background">
         <categroies-recipe @get-cat="getCategoryMeal"></categroies-recipe>
         <base-card>
           <div class="fav-container">
             <h3>收藏食譜</h3>
-            <button class="clear_all_fav"
-                    @click="clearAllFavMeal"
-                    v-show="hasFavorite">清除全部</button>
+            <button
+              class="clear_all_fav"
+              @click="clearAllFavMeal"
+              v-show="hasFavorite"
+            >
+              清除全部
+            </button>
             <div class="fav-meal">
-              <ul class="fav-meals"
-                  v-if="hasFavorite">
-                <favorite-meal v-for="fav in favMealToList"
-                               :key="fav.mealId"
-                               :mealName="fav.mealName"
-                               :mealImageUrl="fav.mealImageUrl"
-                               :mealInfo="fav.mealInfo"
-                               :mealIngrendients="fav.mealIngrendients"
-                               :mealId="fav.mealId"
-                               @clear-fav="clearFav"></favorite-meal>
+              <ul class="fav-meals" v-if="hasFavorite">
+                <favorite-meal
+                  v-for="fav in favMealToList"
+                  :key="fav.mealId"
+                  :mealName="fav.mealName"
+                  :mealImageUrl="fav.mealImageUrl"
+                  :mealInfo="fav.mealInfo"
+                  :mealIngrendients="fav.mealIngrendients"
+                  :mealId="fav.mealId"
+                  @clear-fav="clearFav"
+                ></favorite-meal>
               </ul>
-              <p v-if="!hasFavorite"
-                 class="no_recpie">目前沒有收藏的食譜</p>
+              <p v-if="!hasFavorite" class="no_recpie">目前沒有收藏的食譜</p>
             </div>
           </div>
         </base-card>
 
         <base-card>
-          <p class="error_msg"
-             v-if="!!error">{{error}}</p>
-          <recipe-preview v-else
-                          v-for="item in loadMeal"
-                          :key="item.mealId"
-                          :mealId="item.mealId"
-                          :mealName="item.mealName"
-                          :mealImageUrl="item.mealImageUrl"
-                          :mealInfo="item.mealInstructions"
-                          :mealIngrendients="item.mealIngrendients"
-                          :isSearch="isSearch"
-                          :isRemoved="isRemoved"
-                          @add-fav="addFavorite"
-                          :ref="'preview' + item.mealId">
+          <p class="error_msg" v-if="!!error">{{ error }}</p>
+          <recipe-preview
+            v-else
+            v-for="item in loadMeal"
+            :key="item.mealId"
+            :mealId="item.mealId"
+            :mealName="item.mealName"
+            :mealImageUrl="item.mealImageUrl"
+            :mealInfo="item.mealInstructions"
+            :mealIngrendients="item.mealIngrendients"
+            :isSearch="isSearch"
+            :isRemoved="isRemoved"
+            @add-fav="addFavorite"
+            :ref="'preview' + item.mealId"
+          >
           </recipe-preview>
         </base-card>
         <!-- <button @click="loadRandomRecipe">更多</button> -->

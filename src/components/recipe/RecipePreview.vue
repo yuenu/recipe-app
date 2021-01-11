@@ -10,7 +10,7 @@
     <div class="meal">
       <div class="meal-header">
         <span class="random"
-              v-show="!isSearch">精選食譜</span>
+              v-if="!isSearch">精選食譜</span>
         <img @click="switchPopup"
              :src="mealImageUrl"
              :alt="mealName">
